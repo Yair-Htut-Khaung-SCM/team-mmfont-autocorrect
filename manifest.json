@@ -6,9 +6,9 @@
   "packageName": "com.mm.autocorrect",
   "developer": {
     "name": "Myanmar Unicode Tools",
-    "websiteUrl": "https://example.com",
-    "privacyUrl": "https://example.com/privacy",
-    "termsOfUseUrl": "https://example.com/terms"
+    "websiteUrl": "https://yair-htut-khaung-scm.github.io/team-mmfont-autocorrect",
+    "privacyUrl": "https://yair-htut-khaung-scm.github.io/team-mmfont-autocorrect/privacy",
+    "termsOfUseUrl": "https://yair-htut-khaung-scm.github.io/team-mmfont-autocorrect/terms"
   },
   "icons": {
     "color": "color.png",
@@ -28,8 +28,8 @@
     {
       "entityId": "mm-autocorrect-tab",
       "name": "MM AutoCorrect",
-      "contentUrl": "https://localhost:3000/index.html",
-      "websiteUrl": "https://localhost:3000/index.html",
+      "contentUrl": "https://yair-htut-khaung-scm.github.io/team-mmfont-autocorrect/index.html",
+      "websiteUrl": "https://yair-htut-khaung-scm.github.io/team-mmfont-autocorrect/index.html",
       "scopes": ["personal"]
     }
   ],
@@ -51,12 +51,12 @@
             "title": "Myanmar AutoCorrect",
             "width": "medium",
             "height": "small",
-            "url": "https://localhost:3000/compose.html"
+            "url": "https://yair-htut-khaung-scm.github.io/team-mmfont-autocorrect/compose.html"
           }
         }
       ]
     }
   ],
   "permissions": ["identity", "messageTeamMembers"],
-  "validDomains": ["localhost:3000"]
+  "validDomains": ["yair-htut-khaung-scm.github.io"]
 }
