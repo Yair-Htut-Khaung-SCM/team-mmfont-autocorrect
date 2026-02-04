@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.0",
+  "id": "00000000-0000-0000-0000-000000000000",
+  "packageName": "com.mm.autocorrect",
+  "developer": {
+    "name": "Myanmar Unicode Tools",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "MM AutoCorrect",
+    "full": "Myanmar Unicode AutoCorrect"
+  },
+  "description": {
+    "short": "Auto-correct Myanmar Unicode typing errors",
+    "full": "Automatically corrects common Myanmar Unicode typing mistakes and provides smart suggestions for accurate text input."
+  },
+  "accentColor": "#FFFFFF",
+  "configurableTabs": [],
+  "staticTabs": [
+    {
+      "entityId": "mm-autocorrect-tab",
+      "name": "MM AutoCorrect",
+      "contentUrl": "https://localhost:3000/index.html",
+      "websiteUrl": "https://localhost:3000/index.html",
+      "scopes": ["personal"]
+    }
+  ],
+  "bots": [],
+  "connectors": [],
+  "composeExtensions": [
+    {
+      "botId": "00000000-0000-0000-0000-000000000000",
+      "canUpdateConfiguration": false,
+      "commands": [
+        {
+          "id": "mm-autocorrect-compose",
+          "type": "action",
+          "title": "Myanmar AutoCorrect",
+          "description": "Auto-correct Myanmar Unicode text while composing",
+          "initialRun": true,
+          "context": ["compose"],
+          "taskInfo": {
+            "title": "Myanmar AutoCorrect",
+            "width": "medium",
+            "height": "small",
+            "url": "https://localhost:3000/compose.html"
+          }
+        }
+      ]
+    }
+  ],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["localhost:3000"]
+}

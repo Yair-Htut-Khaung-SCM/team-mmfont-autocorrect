@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCorrect</title>
+    <script src="https://statics.teams.cdn.office.net/sdk/v1.16.0/js/MicrosoftTeams.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .input-area {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            resize: vertical;
+        }
+        .button {
+            background-color: #0078d4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .button:hover {
+            background-color: #106ebe;
+        }
+        .output-area {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #0078d4;
+        }
+        .corrected-text {
+            font-size: 16px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2> AutoCorrect</h2>
+        <p>Enter Myanmar text below to auto-correct common typing errors:</p>
+        
+        <div class="input-area">
+            <textarea id="inputText" placeholder="Type Myanmar text here..."></textarea>
+        </div>
+        
+        <button class="button" onclick="correctText()">AutoCorrect</button>
+        
+        <div id="outputArea" class="output-area" style="display: none;">
+            <h3>Corrected Text:</h3>
+            <div id="correctedText" class="corrected-text"></div>
+        </div>
+    </div>
+
+    <script src="autocorrect.js"></script>
+</body>
+</html>

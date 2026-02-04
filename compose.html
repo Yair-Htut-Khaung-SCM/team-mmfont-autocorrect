@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MM AutoCorrect</title>
+    <script src="https://statics.teams.cdn.office.net/sdk/v1.16.0/js/MicrosoftTeams.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 12px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 12px;
+        }
+        .button {
+            background-color: #0078d4;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        .button:hover {
+            background-color: #106ebe;
+        }
+        .preview {
+            margin-top: 12px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #0078d4;
+            font-size: 16px;
+            word-wrap: break-word;
+            min-height: 40px;
+        }
+        .hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Myanmar AutoCorrect</h3>
+        <textarea id="inputText" placeholder="Type Myanmar text here..."></textarea>
+        <button class="button" onclick="applyCorrection()">Insert Corrected Text</button>
+        <div id="preview" class="preview" style="display: none;"></div>
+        <div class="hint">Type your text, then click Insert or press Ctrl+Enter to send corrected text to chat.</div>
+    </div>
+
+    <script src="autocorrect.js"></script>
+    <script>
+        // Real-time preview
+        let debounceTimer;
+        function updatePreview() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const inputText = document.getElementById('inputText').value;
+                const correctedText = fixPreVowelOrder(fixMedialOrder(inputText));
+                const preview = document.getElementById('preview');
+                if (correctedText && correctedText !== inputText) {
+                    preview.textContent = correctedText;
+                    preview.style.display = 'block';
+                } else if (correctedText === inputText && inputText.length > 0) {
+                    preview.textContent = 'No corrections needed.';
+                    preview.style.display = 'block';
+                } else {
+                    preview.style.display = 'none';
+                }
+            }, 200);
+        }
+
+        // Send corrected text back to Teams compose box
+        function applyCorrection() {
+            const inputText = document.getElementById('inputText').value;
+            const correctedText = fixPreVowelOrder(fixMedialOrder(inputText));
+            microsoftTeams.tasks.submitTask({ text: correctedText || inputText });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            microsoftTeams.initialize();
+            const inputElement = document.getElementById('inputText');
+            inputElement.addEventListener('input', updatePreview);
+            inputElement.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    e.preventDefault();
+                    applyCorrection();
+                }
+            });
+            inputElement.focus();
+        });
+    </script>
+</body>
+</html>
